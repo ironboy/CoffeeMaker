@@ -8,7 +8,7 @@
   
   Uses Marijn Haverbeke's online UglifyJS server
   UglifyJS is written by Mihai Bazon
-  (the parser is a port of Marijn's parse-js for Lisp)
+  (the parser is a port of Marijns H. parse-js for Lisp)
    
   Copyright 2011 Thomas Frank
   MIT-licensed...
@@ -164,7 +164,7 @@
     
     x = !(coffeemaker.keepCoffeeComments || coffeemaker.keepBlankLines) ? x :
     lineDo(x,function(l){
-      if(!l.replace(/\s*#.*/,'')){
+      if(!l.replace(/\s*#.*/,'') && l.indexOf('###')<0){
         if(!coffeemaker.keepCoffeeComments && l.indexOf('_-_isABlankLine_-_') < 0){return};
         l = l.replace(/(\s*)#\s*(.*)/g,
         '$1###\n_-_onelinecoffeecomment_-_\n$2\n###\n');
