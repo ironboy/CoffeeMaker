@@ -121,4 +121,3 @@ for debugging and readability purposes.
 $uglifyJS
 Default: false
 Minifies the compiled JavaScript code using UglifyJS.
-
