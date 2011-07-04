@@ -8,7 +8,7 @@
   
   Uses Marijn Haverbeke's online UglifyJS server
   UglifyJS is written by Mihai Bazon
-  (the parser is a port of Marijns H. parse-js for Lisp)
+  (the parser is a port of Marijn's parse-js for Lisp)
    
   Copyright 2011 Thomas Frank
   MIT-licensed...
