@@ -33,7 +33,7 @@ INSTALL:
 2) Copy the coffeemaker folder to your public document root folder.
 
 3) If you do NOT have an .htaccess file in your public document root folder already
-   then copy the .htaccess file here.
+   then copy the provided .htaccess file here.
 	 
    ELSE add the following 4 lines to the .htaccess file in your public document root
 	 folder:
@@ -44,7 +44,7 @@ INSTALL:
 
 4) Set write permissions for the coffeemaker/cache folder so that PHP can write to 
    it - do a chmod 777 if you must (but preferably don't do this for the whole 
-	 coffeemaker-folder...)
+	 coffeemaker-folder).
 	 
 -----------------
 
@@ -60,7 +60,7 @@ Important: The script	must have the extension ".cof"...
 INCLUDES:
 
 Naturally you can include several CoffeeScripts on your web page using multiple
-script tags. But you can also perofmr includes from your Coffeescript files.
+script tags. But you can also perform includes from your Coffeescript files.
 You do this through a comment:
 
 # include filename.cof
@@ -75,7 +75,7 @@ that performs the include.
 
 HOW DOES IT WORK?
 
-The rewrite rules in the .htaccess will rewrite the request for the script to 
+The rewrite rules in the .htaccess will rewrite the request for the .cof-script to 
 coffeemaker.php. CoffeMaker then checks if the script has been cached since 
 last changes - if so it returns a cached version. Otherwise CoffeeMaker will 
 compile the script and cache it.
@@ -97,9 +97,12 @@ Default: true
 If you turn this off CoffeeMaker can not compile anymore - it can only serve up
 files already compiled. For maximum security please configure this flag so that 
 it is set to false on your production server - since CoffeeMaker compiles on the 
-client side there could otherwise be a danger of code injection. (However CoffeeMaker
-also counters this with a ticket system - thus trying to block unlegit write attempts
-to its cache.)
+client side there could otherwise be a danger of code injection. Then copy the 
+coffeemaker/cache folder (or the subfolder in it related to your project) to the 
+production server when you want to go live.
+
+(However CoffeeMaker also counters this with a ticket system - thus trying to 
+block unlegit write attempts to its cache.)
 
 $allowIncludes
 Default: true
