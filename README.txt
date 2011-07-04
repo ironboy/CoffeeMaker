@@ -16,7 +16,7 @@ CoffeeMaker v 0.1
   
   Uses Marijn Haverbeke's online UglifyJS server
   UglifyJS is written by Mihai Bazon
-  (the parser is a port of Marijns H. parse-js for Lisp)
+  (the parser is a port of Marijn's parse-js for Lisp)
   
   Icon from http://www.visualpharm.com
    
@@ -27,21 +27,24 @@ CoffeeMaker v 0.1
 
 INSTALL:
 
-1) Make sure you have a LAMP server with PHP > 5.3 (Might work on older I haven't tested).
+1) Make sure you have a LAMP server with Apache > 2.0, PHP > 5.2 
+   and that Apache mod-rewrite is not disabled.
 
 2) Copy the coffeemaker folder to your public document root folder.
 
 3) If you do NOT have an .htaccess file in your public document root folder already
    then copy the .htaccess file here.
 	 
-   ELSE add the following 4 lines to the .htaccess file in your public document root folder 
+   ELSE add the following 4 lines to the .htaccess file in your public document root
+	 folder:
    RewriteEngine On
    RewriteRule (.*\.cof)/?$ /coffeemaker/coffeemaker.php?file=/$1
    RewriteRule coffeemaker/?$ /_-_-_-_-_-_-_-_
    RewriteRule coffeemaker/.*/.* /_-_-_-_-_-_-
 
-4) Set write permissions for the coffeemaker/cache folder so that PHP can write to it (777 is ok)
-   (Preferably don't do this for the whole coffeemaker-folder...)
+4) Set write permissions for the coffeemaker/cache folder so that PHP can write to 
+   it - do a chmod 777 if you must (but preferably don't do this for the whole 
+	 coffeemaker-folder...)
 	 
 -----------------
 
@@ -56,27 +59,30 @@ Important: The script	must have the extension ".cof"...
 
 INCLUDES:
 
-Naturally you can include several CoffeeScripts on your web page using multiple script tags.
-But you can also do includes of CoffeeScripts in your Coffeescript file.
+Naturally you can include several CoffeeScripts on your web page using multiple
+script tags. But you can also perofmr includes from your Coffeescript files.
 You do this through a comment:
 
 # include filename.cof
 
 The file will be included on the same 'indentation level' as your comment.
 If you include a file with the extension '.js' CoffeeMaker assumes this is JavaScript
-and includes it without compilation.
+and includes it without compilation. Relative paths are resolves from the script
+that performs the include.
 
 -----------------
 
 
 HOW DOES IT WORK?
 
-The rewrite rules in the .htaccess will rewrite the request for the script to coffeemaker.php.
-CoffeMaker then checks if the script has been cached since last changes - if so it returns a
-cached version. Otherwise CoffeeMaker will compile the script and cache it.
+The rewrite rules in the .htaccess will rewrite the request for the script to 
+coffeemaker.php. CoffeMaker then checks if the script has been cached since 
+last changes - if so it returns a cached version. Otherwise CoffeeMaker will 
+compile the script and cache it.
 
-CoffeeMaker uses the client (your browser) for compilation but caches the result on the server,
-in its cache folder. (See notes on safety later.)
+CoffeeMaker uses the client (your browser) for compilation but caches the 
+result on the server, in its cache folder. (See notes on security in the 
+configuration section below.)
 
 -----------------
 
@@ -89,10 +95,11 @@ Here you will find a number of flags that can be set to true or false:
 $allowCacheCreation
 Default: true
 If you turn this off CoffeeMaker can not compile anymore - it can only serve up
-files already compiled. For maximum security please configure this flag so that it is
-set to false on your production server - since CoffeeMaker compiles on the client side
-there could otherwise be a danger of code injection. (However CoffeeMaker also counters
-this with a ticket system - thus blocking unlegit write attempts to its cache.)
+files already compiled. For maximum security please configure this flag so that 
+it is set to false on your production server - since CoffeeMaker compiles on the 
+client side there could otherwise be a danger of code injection. (However CoffeeMaker
+also counters this with a ticket system - thus trying to block unlegit write attempts
+to its cache.)
 
 $allowIncludes
 Default: true
