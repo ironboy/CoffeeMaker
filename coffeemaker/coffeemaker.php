@@ -5,9 +5,9 @@
   with no need for node.js installation
   
   Please Note: 
-  For safety you are adviced to turn off cache creation 
+  For security reasons you are adviced to turn off cache creation 
   in a production environment.
-  
+	
   Includes the CoffeeScript Compiler
   MIT-licensed, Copyright Jeremy Ashkenas
   
@@ -37,6 +37,7 @@ function okPath($x){
   $y = explode($_SERVER['DOCUMENT_ROOT'],$x);
   count($y) < 2 && die();
 }
+
 isset($_GET['passthru']) && okPath($_GET['passthru']);
 isset($_GET['file']) && okPath($_GET['file']);
 isset($_POST['path']) && okPath($_POST['path']);
@@ -54,6 +55,7 @@ $COF_file = $_SERVER['DOCUMENT_ROOT'].$f;
 $COF_f_exists = file_exists($COF_file) || die();
 $JS_file = dirname(__FILE__).'/cache'.str_replace('.cof','.js',$f);
 $JS_f_exists = file_exists($JS_file);
+
 
 // check coffeescript file + includes + config for latest time of change
 $COF_f_time = $COF_f_exists ? filemtime($COF_file) : 0;

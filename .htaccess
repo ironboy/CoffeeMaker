@@ -1,1 +1,4 @@
-RedirectMatch 301 (.*\.cof)$ /coffeemaker/coffeemaker.php?file=$1
+RewriteEngine On
+RewriteRule (.*\.cof)/?$ /coffeemaker/coffeemaker.php?file=/$1
+RewriteRule coffeemaker/?$ /_-_-_-_-_-_-_-_
+RewriteRule coffeemaker/.*/.* /_-_-_-_-_-_-
