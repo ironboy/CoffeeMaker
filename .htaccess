@@ -1,0 +1,1 @@
+RedirectMatch 301 (.*\.cof)$ /coffeemaker/coffeemaker.php?file=$1
