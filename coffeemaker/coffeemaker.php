@@ -13,7 +13,7 @@
   
   Uses Marijn Haverbeke's online UglifyJS server
   UglifyJS is written by Mihai Bazon
-  (the parser is a port of Marijn's parse-js for Lisp)
+  (the parser is a port of Marijns H. parse-js for Lisp)
   
   Icon from http://www.visualpharm.com
    
@@ -84,13 +84,14 @@ if($allowCacheCreation && isset($_POST['path']) && isset($_POST['store'])){
   if(!isset($_POST['ticket'])){die("No ticket");}
   $tickets  = explode("\n",file_get_contents('cache/__tickets.txt'));
   if(!in_array($_POST['ticket'],$tickets)){
-    die('<br /><b>Warning</b>:');
+   die('<br /><b>Warning</b>:');
   }
   else {
     file_put_contents('cache/__tickets.txt',str_replace($_POST['ticket']."\n",'',implode("\n",$tickets)));
   }
   $path = dirname(__FILE__).'/cache'.str_replace('.cof','.js',str_replace('..','',$_POST['path']));
   if(!file_exists($path)){
+		echo($path);
     mkdir(dirname($path),0777,true);
   }
   else {
